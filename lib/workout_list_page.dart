@@ -6,6 +6,19 @@ class WorkoutListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar:AppBar(
+        title: Text('WorkoutList'),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Row(
+            children: [],
+          ),
+
+        ],
+      ),
+    );
   }
 }
