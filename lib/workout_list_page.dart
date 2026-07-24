@@ -2,8 +2,36 @@
 import 'package:flutter/material.dart';
 
 class WorkoutListPage extends StatelessWidget {
-  const WorkoutListPage({super.key});
+  WorkoutListPage({super.key});
+  List<String> workoutName=[
+    '스쿼트',
+    '마운틴 클림버',
+    '푸시업',
+    '윗몸 일으키기',
+    '사이드 런지',
+    '덩키 킥',
+    '사이드 플랭크',
+    '리버스 플랭크',
+    '힙 브릿지',
+    '어깨 스트레칭',
+    '햄스트링 스트레칭'
+  ];
 
+  List<String> workoutImage = [
+    'squat.png',
+    'mountain_climber.png',
+    'push_up.png',
+    'sit_up.png',
+    'side_lunge.png',
+    'donkey_kick.png',
+    'side_plank.png',
+    'reverse_plank.png',
+    'hip_bridge.png',
+    'shoulder_stretch.png',
+    'hamstring_stretch.png',
+  ];
+  
+  List<int> workoutMinutes = [30, 20, 15, 15, 20, 30, 20, 15, 25, 15, 10];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
