@@ -3,24 +3,26 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MyApp());
 }
+
 //git save check
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: LandingPage());
+    return MaterialApp(home: WorkoutListPage());
   }
 }
 
-/// 운동 트래커의 홈 화면입니다.
-class WorkoutHome extends StatelessWidget {
-  const WorkoutHome({super.key});
+class WorkoutListPage extends StatelessWidget {
+  const WorkoutListPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold();
   }
 }
+
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -37,7 +39,10 @@ class LandingPage extends StatelessWidget {
                 color: Colors.black,
                 child: Text(
                   'My perfect workout mate',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Pretendard',
+                  ),
                 ),
               ),
               Image(
@@ -50,14 +55,23 @@ class LandingPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black45,
-                ),
-                child: Text(
-                  '시작하기',
-                  style: TextStyle(fontSize: 25, color: Colors.white),
+
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black87,
+                  ),
+                  onPressed: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(11.0),
+                    child: Center(
+                      child: const Text(
+                        '시작하기',
+                        style: TextStyle(fontSize: 30, color: Colors.white),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
