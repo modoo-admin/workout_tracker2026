@@ -34,40 +34,40 @@ class WorkoutListPage extends StatelessWidget {
   List<int> workoutMinutes = [30, 20, 15, 15, 20, 30, 20, 15, 25, 15, 10];
 
   List<Row> getWorkoutList() {
-
+    List<Row> result=[];
     for(int i=0;i< workoutName.length; i++){
       var name=workoutName[i];
       var minutes=workoutMinutes[i];
       var image=workoutImage[i];
-
-
+      Row sample=Row(
+        spacing: 20,
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/$image'),
+                fit: BoxFit.cover,
+              ),
+              shape: BoxShape.circle,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              '${i+1}.$name', style: TextStyle(fontSize:20),
+            ),
+          ),
+          Text(
+            '$minutes', style: TextStyle(fontSize:20, color:Colors.blue),
+          ),
+        ],
+      );
+      result.add(sample);
     }
     //###############################
-    Row sample=Row(
-      spacing: 20,
-      children: [
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/squat.png'),
-              fit: BoxFit.cover,
-            ),
-            shape: BoxShape.circle,
-          ),
-        ),
-        Expanded(
-          child: Text(
-            '1.스쿼트', style: TextStyle(fontSize:20),
-          ),
-        ),
-        Text(
-          '5:30', style: TextStyle(fontSize:20, color:Colors.blue),
-        ),
-      ],
-    );
-    return [sample,sample,sample];
+
+    return result;
   }
 
   @override
