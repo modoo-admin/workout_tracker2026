@@ -14,7 +14,20 @@ class WorkoutListPage extends StatelessWidget {
       body: Column(
         children: [
           Row(
-            children: [],
+            children: [
+              //Image.asset('assets/squat.png'),
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/squat.png'),
+                    fit: BoxFit.cover,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ],
           ),
 
         ],
