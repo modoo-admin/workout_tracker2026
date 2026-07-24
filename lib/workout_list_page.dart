@@ -27,6 +27,12 @@ class WorkoutListPage extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
               ),
+              Text(
+                '1.스쿼트', style: TextStyle(fontSize:20),
+              ),
+              Text(
+                '5:30', style: TextStyle(fontSize:20, color:Colors.blue),
+              ),
             ],
           ),
 
