@@ -48,6 +48,28 @@ class WorkoutGuidePage extends StatelessWidget {
               ),
             ],
           ),
+          Row(
+            children: [
+              Container(
+                width:160,
+                height:100,
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  border:Border.all(color:Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              Container(
+                width:160,
+                height:100,
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  border:Border.all(color:Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
