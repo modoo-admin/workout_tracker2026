@@ -53,6 +53,7 @@ class WorkoutGuidePage extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
                 width: 160,
@@ -95,16 +96,16 @@ class WorkoutGuidePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '운동 부위',
+                      '이런 사람에게 강추!',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
-                      '배, 상체 근육',
+                      '뱃살이 고민이에요 \n체지방 태우고싶어요.',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color:Colors.grey,
                       ),
@@ -113,6 +114,24 @@ class WorkoutGuidePage extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+
+          Container(
+            width: 160,
+            height: 100,
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Text(
+              '30분',
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.w500,
+                color:Colors.blue,
+              ),
+            ),
           ),
         ],
       ),
