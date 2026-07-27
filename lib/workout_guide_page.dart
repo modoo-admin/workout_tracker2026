@@ -91,6 +91,26 @@ class WorkoutGuidePage extends StatelessWidget {
                   border: Border.all(color: Colors.grey.shade300),
                   borderRadius: BorderRadius.circular(16),
                 ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '운동 부위',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      '배, 상체 근육',
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        color:Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
