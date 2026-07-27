@@ -116,22 +116,26 @@ class WorkoutGuidePage extends StatelessWidget {
             ],
           ),
 
-          Container(
-            width: 160,
-            height: 100,
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade300),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Text(
-              '30분',
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.w500,
-                color:Colors.blue,
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    '30분',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.w500,
+                      color:Colors.blue,
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
