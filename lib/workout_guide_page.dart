@@ -11,6 +11,7 @@ class WorkoutGuidePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             children: [
@@ -115,7 +116,6 @@ class WorkoutGuidePage extends StatelessWidget {
               ),
             ],
           ),
-
           Row(
             children: [
               Expanded(
@@ -125,17 +125,25 @@ class WorkoutGuidePage extends StatelessWidget {
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: Text(
-                    '30분',
-                    style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w500,
-                      color:Colors.blue,
+                  child: Center(
+                    child: Text(
+                      '30분',
+                      style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w500,
+                        color:Colors.blue,
+                      ),
                     ),
                   ),
                 ),
               ),
             ],
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.play_circle),
+            iconSize: 70,
+            color:Colors.blue,
           ),
         ],
       ),
