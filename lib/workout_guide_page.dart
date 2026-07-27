@@ -20,7 +20,7 @@ class WorkoutGuidePage extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 decoration: TextDecoration.underline,
                 decorationColor: Colors.blue,
-                decorationThickness: 2.0,
+                decorationThickness: 3.0,
               ),),
               SizedBox(width: 20),
               Text('산을 오르는 자세를 닮아 붙은 \n이름으로 단시간 안에 체지방을 \n많이 태워 복부 비만에 제격입니다.',
@@ -31,6 +31,21 @@ class WorkoutGuidePage extends StatelessWidget {
                 ),
               ),
               Spacer(),
+            ],
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: (){},
+                icon:Icon(Icons.arrow_back_ios),
+                iconSize:70,
+              ),
+              Expanded(child: Image.asset('assets/squat.png')),
+              IconButton(
+                onPressed: (){},
+                icon:Icon(Icons.arrow_forward_ios),
+                iconSize:70,
+              ),
             ],
           ),
         ],
