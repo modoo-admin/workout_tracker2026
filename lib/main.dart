@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'workout_guide_page.dart';
 import 'workout_list_page.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: WorkoutListPage());
+    return MaterialApp(home: WorkoutGuidePage());
   }
 }
 
