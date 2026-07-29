@@ -154,10 +154,14 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
   }
 
   IconButton getIconButton() {
+    print('123');
     if(player.state == PlayerState.playing){
       return IconButton(
-        onPressed: () {
-          player.stop(); // will immediately start playing
+        onPressed: () async{
+          await player.stop();
+          setState(() {
+
+          });
         },
         icon: Icon(Icons.stop_circle),
         iconSize: 70,
@@ -165,8 +169,11 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
       );
     }else{
       return IconButton(
-        onPressed: () {
-          player.play(AssetSource('squat.mp3')); // will immediately start playing
+        onPressed: () async{
+          await player.play(AssetSource('squat.mp3'));
+          setState(() {
+
+          });
         },
         icon: Icon(Icons.play_circle),
         iconSize: 70,
