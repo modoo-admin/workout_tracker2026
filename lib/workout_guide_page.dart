@@ -147,18 +147,32 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
               ),
             ],
           ),
-          IconButton(
-            onPressed: () {
-
-              player.play(AssetSource('squat.mp3')); // will immediately start playing
-
-            },
-            icon: Icon(Icons.play_circle),
-            iconSize: 70,
-            color:Colors.blue,
-          ),
+          getIconButton(),
         ],
       ),
     );
+  }
+
+  IconButton getIconButton() {
+    if(player.state == PlayerState.playing){
+      return IconButton(
+        onPressed: () {
+          player.stop(); // will immediately start playing
+        },
+        icon: Icon(Icons.stop_circle),
+        iconSize: 70,
+        color:Colors.blue,
+      );
+    }else{
+      return IconButton(
+        onPressed: () {
+          player.play(AssetSource('squat.mp3')); // will immediately start playing
+        },
+        icon: Icon(Icons.play_circle),
+        iconSize: 70,
+        color:Colors.blue,
+      );
+    }
+
   }
 }
