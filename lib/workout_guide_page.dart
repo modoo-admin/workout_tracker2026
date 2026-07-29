@@ -13,6 +13,8 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
 
   @override
   Widget build(BuildContext context) {
+    var textTheme=Theme.of(context).textTheme;
+    var colorScheme=Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: Text('Workout Guide'),
@@ -136,11 +138,15 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
                   child: Center(
                     child: Text(
                       '30분',
-                      style: TextStyle(
-                        fontSize: 35,
+                      style: textTheme.headlineLarge?.copyWith(
+                        color: colorScheme.secondaryFixedDim,
                         fontWeight: FontWeight.w500,
-                        color:Colors.blue,
                       ),
+                      // style: TextStyle(
+                      //   fontSize: 35,
+                      //   fontWeight: FontWeight.w500,
+                      //   color:Theme.of(context).colorScheme.secondaryFixedDim
+                      // ),
                     ),
                   ),
                 ),
@@ -154,7 +160,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
   }
 
   IconButton getIconButton() {
-    print('123');
+
     if(player.state == PlayerState.playing){
       return IconButton(
         onPressed: () async{
@@ -165,7 +171,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
         },
         icon: Icon(Icons.stop_circle),
         iconSize: 70,
-        color:Colors.blue,
+
       );
     }else{
       return IconButton(
@@ -177,7 +183,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
         },
         icon: Icon(Icons.play_circle),
         iconSize: 70,
-        color:Colors.blue,
+        color: Theme.of(context).colorScheme.primary,
       );
     }
 
