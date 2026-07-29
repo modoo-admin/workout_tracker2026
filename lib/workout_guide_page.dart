@@ -1,7 +1,15 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-class WorkoutGuidePage extends StatelessWidget {
+class WorkoutGuidePage extends StatefulWidget {
   const WorkoutGuidePage({super.key});
+
+  @override
+  State<WorkoutGuidePage> createState() => _WorkoutGuidePageState();
+}
+
+class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
+  final player = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +148,11 @@ class WorkoutGuidePage extends StatelessWidget {
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+
+              player.play(AssetSource('squat.mp3')); // will immediately start playing
+
+            },
             icon: Icon(Icons.play_circle),
             iconSize: 70,
             color:Colors.blue,
