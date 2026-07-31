@@ -40,7 +40,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
     }
     currentWorkout=workouts[workoutIndex];
   }
-  void nextWokrout(){
+  void nextWorkout(){
     workoutIndex++;
 
     if(workoutIndex >= workouts.length){
@@ -102,7 +102,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
               IconButton(
                 onPressed: () {
                   setState(() {
-                    nextWokrout();
+                    nextWorkout();
                   });
                 },
                 icon: Icon(Icons.arrow_forward_ios),
