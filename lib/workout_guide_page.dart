@@ -49,6 +49,12 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
     currentWorkout=workouts[workoutIndex];
   }
   @override
+  void dispose() {
+
+    player.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     var textTheme=Theme.of(context).textTheme;
     var colorScheme=Theme.of(context).colorScheme;
