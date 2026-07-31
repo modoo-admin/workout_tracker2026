@@ -75,6 +75,9 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
               IconButton(
                 onPressed: () {
                   workoutIndex--;
+                  if(workoutIndex < 0){
+                    workoutIndex=workouts.length-1;
+                  }
                   currentWorkout=workouts[workoutIndex];
                   setState(() {
 
@@ -88,7 +91,12 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
               IconButton(
                 onPressed: () {
                   workoutIndex++;
+
+                  if(workoutIndex >= workouts.length){
+                    workoutIndex=0;
+                  }
                   currentWorkout=workouts[workoutIndex];
+
                   setState(() {
 
                   });
