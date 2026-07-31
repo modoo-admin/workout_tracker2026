@@ -25,8 +25,14 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
     Workout(name: '어깨 스트레칭', minutes: 10, imageName: 'shoulder_stretch.png', audioName: 'shoulder_stretch.mp3', kcal: 30),
     Workout(name: '햄스트링 스트레칭', minutes: 10, imageName: 'hamstring_stretch.png', audioName: 'hamstring_stretch.mp3', kcal: 30),
   ];
-  Workout currentWorkout= workouts[0];
-
+  late Workout currentWorkout;
+  int workoutIndex=0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    currentWorkout= workouts[workoutIndex];
+  }
   @override
   Widget build(BuildContext context) {
     var textTheme=Theme.of(context).textTheme;
@@ -67,13 +73,26 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
           Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  workoutIndex--;
+                  currentWorkout=workouts[workoutIndex];
+                  setState(() {
+
+                  });
+
+                },
                 icon: Icon(Icons.arrow_back_ios),
                 iconSize: 70,
               ),
               Expanded(child: Image.asset('assets/${currentWorkout.imageName}')),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  workoutIndex++;
+                  currentWorkout=workouts[workoutIndex];
+                  setState(() {
+
+                  });
+                },
                 icon: Icon(Icons.arrow_forward_ios),
                 iconSize: 70,
               ),
