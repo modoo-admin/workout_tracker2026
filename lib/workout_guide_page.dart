@@ -24,8 +24,8 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
     Workout(name: '힙 브릿지', minutes: 20, imageName: 'hip_bridge.png', audioName: 'hip_brdige.mp3', kcal: 80),
     Workout(name: '어깨 스트레칭', minutes: 10, imageName: 'shoulder_stretch.png', audioName: 'shoulder_stretch.mp3', kcal: 30),
     Workout(name: '햄스트링 스트레칭', minutes: 10, imageName: 'hamstring_stretch.png', audioName: 'hamstring_stretch.mp3', kcal: 30),
-
   ];
+  Workout currentWorkout= workouts[0];
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
             children: [
               Spacer(),
               Text(
-                '스쿼트',
+                '${currentWorkout.name}',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
@@ -71,7 +71,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
                 icon: Icon(Icons.arrow_back_ios),
                 iconSize: 70,
               ),
-              Expanded(child: Image.asset('assets/squat.png')),
+              Expanded(child: Image.asset('assets/${currentWorkout.imageName}')),
               IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.arrow_forward_ios),
@@ -153,7 +153,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
                   ),
                   child: Center(
                     child: Text(
-                      '30분',
+                      '${currentWorkout.minutes}분',
                       style: textTheme.headlineLarge?.copyWith(
                         color: colorScheme.secondaryFixedDim,
                         fontWeight: FontWeight.w500,
@@ -192,7 +192,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
     }else{
       return IconButton(
         onPressed: () async{
-          await player.play(AssetSource('squat.mp3'));
+          await player.play(AssetSource('${currentWorkout.audioName}'));
           setState(() {
 
           });
