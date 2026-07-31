@@ -16,11 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: WorkoutGuidePage(),
-      theme:FlexThemeData.light(
-        
-      ),
-      //theme: FlexThemeData.light(scheme: FlexScheme.redWine),
-      //darkTheme: FlexThemeData.dark(scheme: FlexScheme.redWine),
+      theme: FlexThemeData.light(scheme: FlexScheme.redWine),
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.redWine),
       themeMode: ThemeMode.system,
     );
   }
