@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: WorkoutGuidePage(),
+      //home: WorkoutGuidePage(),
+      home: WorkoutListPage(),
       theme: FlexThemeData.light(scheme: FlexScheme.redWine),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.redWine),
       themeMode: ThemeMode.system,
