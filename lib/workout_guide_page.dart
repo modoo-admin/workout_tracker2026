@@ -33,6 +33,21 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
     super.initState();
     currentWorkout= workouts[workoutIndex];
   }
+  void prevWorkout(){
+    workoutIndex--;
+    if(workoutIndex < 0){
+      workoutIndex=workouts.length-1;
+    }
+    currentWorkout=workouts[workoutIndex];
+  }
+  void nextWokrout(){
+    workoutIndex++;
+
+    if(workoutIndex >= workouts.length){
+      workoutIndex=0;
+    }
+    currentWorkout=workouts[workoutIndex];
+  }
   @override
   Widget build(BuildContext context) {
     var textTheme=Theme.of(context).textTheme;
@@ -74,13 +89,9 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
             children: [
               IconButton(
                 onPressed: () {
-                  workoutIndex--;
-                  if(workoutIndex < 0){
-                    workoutIndex=workouts.length-1;
-                  }
-                  currentWorkout=workouts[workoutIndex];
-                  setState(() {
 
+                  setState(() {
+                    prevWorkout();
                   });
 
                 },
@@ -90,15 +101,8 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
               Expanded(child: Image.asset('assets/${currentWorkout.imageName}')),
               IconButton(
                 onPressed: () {
-                  workoutIndex++;
-
-                  if(workoutIndex >= workouts.length){
-                    workoutIndex=0;
-                  }
-                  currentWorkout=workouts[workoutIndex];
-
                   setState(() {
-
+                    nextWokrout();
                   });
                 },
                 icon: Icon(Icons.arrow_forward_ios),
