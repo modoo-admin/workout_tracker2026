@@ -26,7 +26,7 @@ class DashboardCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               icon,
-              //Icon(Icons.push_pin_outlined),
+
               SizedBox(width:5),
               //Text('Text')
               title,

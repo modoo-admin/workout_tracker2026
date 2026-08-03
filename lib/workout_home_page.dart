@@ -81,10 +81,38 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: DashboardCard(),
+                    child: DashboardCard(
+                      icon:Icon(Icons.push_pin_outlined),
+                      title: Text('Today'),
+                      info: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                                children: [
+                                  TextSpan(text:'운동시간\n'),
+                                  TextSpan(text:'450분'),
+                                ]
+                            ),
+                          ),
+                          Text.rich(
+                            TextSpan(
+                                children: [
+                                  TextSpan(text:'소모 칼로리\n'),
+                                  TextSpan(text:'2400 kcal'),
+                                ]
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   Expanded(
-                    child: DashboardCard(),
+                    child: DashboardCard(
+                      icon:Icon(Icons.fax_rounded),
+                      title: Text('Monthly'),
+                      info: Container(),
+                    ),
                   ),
                 ],
               ),
@@ -97,23 +125,39 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                   children: [
                     SizedBox(
                       width: 170,
-                      child: DashboardCard(),
+                      child: DashboardCard(
+                        icon:Icon(Icons.baby_changing_station_rounded),
+                        title: Text('그룹1'),
+                        info: Container(),
+                      ),
                     ),
 
                     SizedBox(
                       width: 170,
-                      child: DashboardCard(),
+                      child: DashboardCard(
+                        icon:Icon(Icons.eighteen_up_rating_outlined),
+                        title: Text('그룹2'),
+                        info: Container(),
+                      ),
                     ),
 
                     SizedBox(
                       width: 170,
-                      child: DashboardCard(),
+                      child: DashboardCard(
+                        icon:Icon(Icons.wallet_giftcard),
+                        title: Text('그룹3'),
+                        info: Container(),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            Expanded(flex: 2, child: DashboardCard(),),
+            Expanded(flex: 2, child: DashboardCard(
+              icon:Icon(Icons.ac_unit_sharp),
+              title: Text('오늘의 운동'),
+              info: Container(),
+            ),),
           ],
         ),
       ),
