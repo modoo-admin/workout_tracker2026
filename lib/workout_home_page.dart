@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'dashboard_card.dart';
+
 class WorkoutHomePage extends StatefulWidget {
   const WorkoutHomePage({super.key});
 
@@ -78,7 +80,12 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
               flex: 3,
               child: Row(
                 children: [
-                  
+                  Expanded(
+                    child: DashboardCard(),
+                  ),
+                  Expanded(
+                    child: DashboardCard(),
+                  ),
                 ],
               ),
             ),
@@ -90,3 +97,4 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
     );
   }
 }
+
