@@ -10,8 +10,8 @@ class WorkoutHomePage extends StatefulWidget {
 class _WorkoutHomePageState extends State<WorkoutHomePage> {
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme=Theme.of(context).textTheme;
-    ColorScheme colorScheme =Theme.of(context).colorScheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -29,13 +29,18 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                   child: Text.rich(
                     TextSpan(
                       children: [
-                        TextSpan(text: '반가워요', style:textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ) ),
-                        TextSpan(text: ' 건강을 위한 한 걸음\n',style: textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: colorScheme.primary,
+                        TextSpan(
+                          text: '반가워요',
+                          style: textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
+                        TextSpan(
+                          text: ' 건강을 위한 한 걸음\n',
+                          style: textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: colorScheme.primary,
+                          ),
                         ),
                         TextSpan(text: '오늘도 힘차게 운동을 해볼까요?\n'),
                         TextSpan(text: '> 내 프로필'),
@@ -69,6 +74,16 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                 ),
               ],
             ),
+            Expanded(
+              flex: 3,
+              child: Row(
+                children: [
+                  
+                ],
+              ),
+            ),
+            Expanded(flex: 2, child: SizedBox()),
+            Expanded(flex: 2, child: SizedBox()),
           ],
         ),
       ),
