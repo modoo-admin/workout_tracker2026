@@ -92,12 +92,28 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
             Expanded(
               flex: 2,
               child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: [],
+                  children: [
+                    SizedBox(
+                      width: 170,
+                      child: DashboardCard(),
+                    ),
+
+                    SizedBox(
+                      width: 170,
+                      child: DashboardCard(),
+                    ),
+
+                    SizedBox(
+                      width: 170,
+                      child: DashboardCard(),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Expanded(flex: 2, child: SizedBox()),
+            Expanded(flex: 2, child: DashboardCard(),),
           ],
         ),
       ),
