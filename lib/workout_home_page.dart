@@ -89,7 +89,14 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                 ],
               ),
             ),
-            Expanded(flex: 2, child: SizedBox()),
+            Expanded(
+              flex: 2,
+              child: SingleChildScrollView(
+                child: Row(
+                  children: [],
+                ),
+              ),
+            ),
             Expanded(flex: 2, child: SizedBox()),
           ],
         ),
@@ -97,4 +104,3 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
     );
   }
 }
-
