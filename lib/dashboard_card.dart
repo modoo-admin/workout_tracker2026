@@ -2,8 +2,14 @@
 import 'package:flutter/material.dart';
 
 class DashboardCard extends StatelessWidget {
-  const DashboardCard({
+  Icon icon;
+  Text title;
+  Widget info;
+  DashboardCard({
     super.key,
+    required this.icon,
+    required this.title,
+    required this.info,
   });
 
   @override
@@ -17,13 +23,27 @@ class DashboardCard extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.push_pin_outlined),
-              Text('Text')
+              icon,
+              //Icon(Icons.push_pin_outlined),
+              SizedBox(width:5),
+              //Text('Text')
+              title,
             ],
           ),
           Expanded(
-            child: Column(
+            child: info,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/*
+* Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text.rich(
                   TextSpan(
@@ -43,9 +63,4 @@ class DashboardCard extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+* */
