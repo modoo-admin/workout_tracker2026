@@ -16,8 +16,12 @@ final router = GoRouter(
       builder: (context, state) => WorkoutHomePage(),
       routes:[
         GoRoute(
-          path: 'workout_list',
-          builder: (context, state) => WorkoutListPage(),
+          path: 'workout_list/:group_index',
+          builder: (context, state) {
+            String? groupIndexString=state.pathParameters['group_index'];
+            final groupIndex=int.parse(groupIndexString!);
+            return WorkoutListPage(groupIndex:groupIndex);
+          },
           routes: [
             GoRoute(
               path: 'workout_guide/:workouts_index',

@@ -16,6 +16,23 @@ class WorkoutManager{
     Workout(name: '햄스트링 스트레칭', minutes: 10, imageName: 'hamstring_stretch.png', audioName: 'hamstring_stretch.mp3', kcal: 30),
   ];
 
+  static List<Workout> group1Workout=[
+    workouts[0],
+    workouts[2],
+    workouts[5],
+    workouts[3],
+    workouts[7],
+  ];
+  static List<Workout> group2Workout=[
+    workouts[0],
+    workouts[2],
+    workouts[5],
+    workouts[3],
+    workouts[0],
+    workouts[0],
+    workouts[0],
+  ];
+
   static List<WorkoutGroup> workoutGroups=[
     WorkoutGroup(
       groupDescription: '그룹1, 아침을 여는 5가지 운동',

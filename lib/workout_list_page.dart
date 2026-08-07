@@ -6,8 +6,9 @@ import 'workout.dart';
 import 'workout_manager.dart';
 
 class WorkoutListPage extends StatelessWidget {
-  WorkoutListPage({super.key});
-  List<Workout> workouts=WorkoutManager.workouts;
+  int groupIndex;
+  WorkoutListPage({required this.groupIndex, super.key});
+  List<Workout> workouts=WorkoutManager.workoutGroups[groupIndex].workouts;
 
   List<Widget> getWorkoutList(BuildContext context) {
     List<Widget> result=[];
