@@ -1,4 +1,5 @@
 import 'workout.dart';
+import 'workout_group.dart';
 
 class WorkoutManager{
   static List<Workout> workouts=[
@@ -14,4 +15,30 @@ class WorkoutManager{
     Workout(name: '어깨 스트레칭', minutes: 10, imageName: 'shoulder_stretch.png', audioName: 'shoulder_stretch.mp3', kcal: 30),
     Workout(name: '햄스트링 스트레칭', minutes: 10, imageName: 'hamstring_stretch.png', audioName: 'hamstring_stretch.mp3', kcal: 30),
   ];
+
+  static List<WorkoutGroup> workoutGroups=[
+    WorkoutGroup(
+      groupDescription: '그룹1, 아침을 여는 5가지 운동',
+      workouts: [
+        workouts[0],
+        workouts[2],
+        workouts[5],
+        workouts[3],
+        workouts[7],
+      ]
+    ),
+    WorkoutGroup(
+        groupDescription: '그룹2, 7가지 운동',
+        workouts: [
+          workouts[1],
+          workouts[2],
+          workouts[3],
+          workouts[6],
+          workouts[7],
+          workouts[8],
+          workouts[0],
+        ]
+    ),
+  ];
 }
+
