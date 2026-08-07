@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'workout.dart';
 
 class WorkoutGuidePage extends StatefulWidget {
-  const WorkoutGuidePage({super.key});
+  int workoutsIndex;
+  WorkoutGuidePage({required this.workoutsIndex, super.key});
 
   @override
   State<WorkoutGuidePage> createState() => _WorkoutGuidePageState();
@@ -31,6 +32,7 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    workoutIndex=widget.workoutsIndex;
     currentWorkout= workouts[workoutIndex];
   }
   void prevWorkout(){
