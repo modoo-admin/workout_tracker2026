@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'dashboard_card.dart';
 
@@ -129,6 +130,9 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                         icon:Icon(Icons.baby_changing_station_rounded),
                         title: Text('그룹1'),
                         info: Container(),
+                        customOnTap: (){
+                          context.go('/workout_home/workout_list');
+                        },
                       ),
                     ),
 

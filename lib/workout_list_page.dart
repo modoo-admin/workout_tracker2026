@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'workout.dart';
 
@@ -21,14 +22,16 @@ class WorkoutListPage extends StatelessWidget {
 
   ];
 
-  List<Widget> getWorkoutList() {
+  List<Widget> getWorkoutList(BuildContext context) {
     List<Widget> result=[];
     for(int i=0;i< workouts.length; i++){
       var name=workouts[i].name;
       var minutes=workouts[i].minutes;
       var image=workouts[i].imageName;
       Widget sample=GestureDetector(
-        onTap:(){},
+        onTap:(){
+          context.go('/workout_home/workout_list/workout_guide');
+        },
         child: Row(
           spacing: 20,
           children: [
@@ -70,7 +73,7 @@ class WorkoutListPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children:getWorkoutList(),
+          children:getWorkoutList(context),
         ),
       ),
     );

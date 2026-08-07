@@ -12,6 +12,7 @@ class DashboardCard extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.info,
+    this.customOnTap,
   });
 
   @override
