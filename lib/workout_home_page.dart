@@ -131,7 +131,7 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                         title: Text('그룹1'),
                         info: Container(),
                         customOnTap: (){
-                          context.go('/workout_home/workout_list');
+                          context.go('/workout_home/workout_list/0');
                         },
                       ),
                     ),
@@ -142,6 +142,9 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                         icon:Icon(Icons.eighteen_up_rating_outlined),
                         title: Text('그룹2'),
                         info: Container(),
+                        customOnTap: (){
+                          context.go('/workout_home/workout_list/1');
+                        },
                       ),
                     ),
 
@@ -151,6 +154,9 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                         icon:Icon(Icons.wallet_giftcard),
                         title: Text('그룹3'),
                         info: Container(),
+                        customOnTap: (){
+                          context.go('/workout_home/workout_list/1');
+                        },
                       ),
                     ),
                   ],

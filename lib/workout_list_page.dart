@@ -7,8 +7,9 @@ import 'workout_manager.dart';
 
 class WorkoutListPage extends StatelessWidget {
   int groupIndex;
-  WorkoutListPage({required this.groupIndex, super.key});
-  List<Workout> workouts=WorkoutManager.workoutGroups[groupIndex].workouts;
+  List<Workout> workouts;
+  WorkoutListPage({required this.groupIndex, super.key}):workouts=WorkoutManager.workoutGroups[groupIndex].workouts;
+
 
   List<Widget> getWorkoutList(BuildContext context) {
     List<Widget> result=[];
@@ -18,7 +19,7 @@ class WorkoutListPage extends StatelessWidget {
       var image=workouts[i].imageName;
       Widget sample=GestureDetector(
         onTap:(){
-          context.go('/workout_home/workout_list/workout_guide/$i');
+          context.go('/workout_home/workout_list/$groupIndex/workout_guide/$i');
         },
         child: Row(
           spacing: 20,
