@@ -30,7 +30,7 @@ class WorkoutListPage extends StatelessWidget {
       var image=workouts[i].imageName;
       Widget sample=GestureDetector(
         onTap:(){
-          context.go('/workout_home/workout_list/workout_guide');
+          context.go('/workout_home/workout_list/workout_guide/$i');
         },
         child: Row(
           spacing: 20,
