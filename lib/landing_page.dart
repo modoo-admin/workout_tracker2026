@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -39,7 +40,9 @@ class LandingPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black87,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.go('/workout_home');
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(11.0),
                     child: Center(
