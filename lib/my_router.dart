@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workout_tracker_2026/landing_page.dart';
+import 'package:workout_tracker_2026/settings_page.dart';
 import 'package:workout_tracker_2026/workout_guide_page.dart';
 import 'package:workout_tracker_2026/workout_home_page.dart';
 import 'package:workout_tracker_2026/workout_list_page.dart';
+
+import 'login_page.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey= GlobalKey<NavigatorState>(debugLabel:'root');
 final GlobalKey<NavigatorState> _homeNavigatorKey= GlobalKey<NavigatorState>(debugLabel:'home');
@@ -55,7 +58,19 @@ final router = GoRouter(
         ),
         StatefulShellBranch(
           navigatorKey: _settingsNavigatorKey,
-          routes:[],
+          routes:[
+            GoRoute(
+              path: '/settings',
+              builder: (context, state) => SettingsPage(),
+              routes:[
+                GoRoute(
+                  path: 'login',
+                  builder: (context, state) => LoginPage(),
+                ),
+              ]
+            ),
+
+          ],
         ),
       ]
     ),
