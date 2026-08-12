@@ -15,6 +15,7 @@ final GlobalKey<NavigatorState> _settingsNavigatorKey= GlobalKey<NavigatorState>
 
 // GoRouter configuration
 final router = GoRouter(
+  navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
       path: '/',

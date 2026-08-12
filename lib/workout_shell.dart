@@ -12,9 +12,25 @@ class WorkoutShell extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
         destinations: [
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home',),
-          NavigationDestination(icon: Icon(Icons.settings_outlined), label: 'Settings',),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.settings),
+            icon: Icon(Icons.settings_outlined),
+            label: 'Settings',
+          ),
+
         ],
+        onDestinationSelected: (index){
+          navigationShell.goBranch(
+              index,
+              initialLocation: true,
+
+          );
+        },
       ),
     );
   }
