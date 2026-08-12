@@ -1,29 +1,42 @@
-
+//filename:dashboard_card.dart
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class DashboardCard extends StatelessWidget {
-  Icon icon;
-  Text title;
-  Widget info;
-  Function()? customOnTap;
-  DashboardCard({
+  final Icon icon;
+  final Text title;
+  final Widget info;
+  final Color? backgroundColor;
+  final LinearGradient? gradient;
+  final EdgeInsets margin;
+  final Function()? customOnTap;
+  const DashboardCard({
     super.key,
     required this.icon,
     required this.title,
     required this.info,
+    this.backgroundColor,
+    this.gradient,
+    this.margin= const EdgeInsets.all(8),
     this.customOnTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return GestureDetector(
-      onTap:customOnTap,
+      onTap: customOnTap,
       child: Container(
-        margin: EdgeInsets.all(8),
+        margin:margin,
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color:Colors.grey.shade300
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+            color: colorScheme.surfaceContainerHigh,
+          ),
+          color: backgroundColor,
+          gradient: gradient,
         ),
         child: Column(
           children: [
@@ -32,41 +45,20 @@ class DashboardCard extends StatelessWidget {
               children: [
                 icon,
 
-                SizedBox(width:5),
-                //Text('Text')
+                SizedBox(width: 5),
                 title,
               ],
             ),
             Expanded(
-              child: info,
+                child: Center(
+                  child: info,
+                )
             ),
+
           ],
+
         ),
       ),
     );
   }
 }
-
-/*
-* Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(text:'운동시간\n'),
-                      TextSpan(text:'450분'),
-                    ]
-                  ),
-                ),
-                Text.rich(
-                  TextSpan(
-                      children: [
-                        TextSpan(text:'소모 칼로리\n'),
-                        TextSpan(text:'2400 kcal'),
-                      ]
-                  ),
-                ),
-              ],
-            ),
-* */
