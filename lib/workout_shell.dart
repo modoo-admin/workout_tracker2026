@@ -27,7 +27,7 @@ class WorkoutShell extends StatelessWidget {
         onDestinationSelected: (index){
           navigationShell.goBranch(
               index,
-              initialLocation: true,
+              initialLocation: index==navigationShell.currentIndex,
 
           );
         },
