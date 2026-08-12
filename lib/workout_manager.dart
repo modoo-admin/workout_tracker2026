@@ -58,13 +58,16 @@ class WorkoutManager{
         ]
     ),
   ];
+  static final asyncPrefs = SharedPreferencesAsync();
+
 
   static void increaseTodayWorkoutMinutes(int minutes) async{
-
+    int todayMinutes = await getTodayWorkoutMinutes();
+    await asyncPrefs.setInt('todayMinutes', todayMinutes+minutes);
   }
   static Future<int> getTodayWorkoutMinutes() async{
-
-    return 0;
+    int todayMinutes=await asyncPrefs.getInt('todayMinutes')??0;
+    return todayMinutes;
   }
 
 }
