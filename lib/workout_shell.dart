@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WorkoutShell extends StatelessWidget {
-  const WorkoutShell({super.key});
+  final StatefulNavigationShell navigationShell;
+  const WorkoutShell({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: navigationShell,
       bottomNavigationBar: NavigationBar(
+        selectedIndex: navigationShell.currentIndex,
         destinations: [
           NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home',),
           NavigationDestination(icon: Icon(Icons.settings_outlined), label: 'Settings',),

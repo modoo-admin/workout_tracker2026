@@ -5,6 +5,7 @@ import 'package:workout_tracker_2026/settings_page.dart';
 import 'package:workout_tracker_2026/workout_guide_page.dart';
 import 'package:workout_tracker_2026/workout_home_page.dart';
 import 'package:workout_tracker_2026/workout_list_page.dart';
+import 'package:workout_tracker_2026/workout_shell.dart';
 
 import 'login_page.dart';
 
@@ -22,14 +23,13 @@ final router = GoRouter(
     StatefulShellRoute.indexedStack(
       parentNavigatorKey: _rootNavigatorKey,
       builder:(context, state, navigationShell){
-        //return WorkoutShell();
-        return Placeholder();
+        return WorkoutShell(navigationShell: navigationShell);
+        //return Placeholder();
       },
       branches: [
         StatefulShellBranch(
           navigatorKey: _homeNavigatorKey,
           routes:[
-
             GoRoute(
               path: '/workout_home',
               builder: (context, state) => WorkoutHomePage(),
