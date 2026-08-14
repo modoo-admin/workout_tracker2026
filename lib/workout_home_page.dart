@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import 'dashboard_card.dart';
+import 'workout_manager.dart';
 
 class WorkoutHomePage extends StatefulWidget {
   const WorkoutHomePage({super.key});
@@ -14,11 +15,21 @@ class WorkoutHomePage extends StatefulWidget {
 
 class _WorkoutHomePageState extends State<WorkoutHomePage> {
   final f1 = NumberFormat.decimalPattern('ko_KR');
+  late Future<int> myFuture;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    myFuture=WorkoutManager.getTodayWorkoutMinutes();
   }
+
+  @override
+  void didUpdateWidget(covariant WorkoutHomePage oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    myFuture=WorkoutManager.getTodayWorkoutMinutes();
+  }
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -122,69 +133,85 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                           ),
                         ),
                         margin: EdgeInsets.only(right: 4, bottom: 4),
-                        info: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Positioned(
-                              top: 10,
-                              child: SizedBox(
-                                width: 80,
-                                height: 80,
-                                child: CircularProgressIndicator(
-                                  value: 450 / 500,
-                                  strokeWidth: 7,
-                                  backgroundColor: Colors.grey[300],
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.blue,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Column(
+                        info: FutureBuilder<int>(
+                          future: myFuture,
+                          builder: (context, asyncSnapshot) {
+                            if (asyncSnapshot.connectionState == ConnectionState.waiting) {
+                              return Center(child: CircularProgressIndicator());
+                            }
+
+                            if (asyncSnapshot.hasError){
+                              return Center(child: Text('error'));
+                            }
+
+                            int? data=asyncSnapshot.data;
+
+
+                            return Stack(
+                              alignment: Alignment.center,
                               children: [
-                                SizedBox(height: 30),
-                                Text.rich(
-                                  textAlign: TextAlign.center,
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: '운동시간\n',
-                                        style: textTheme.bodySmall?.copyWith(
-                                          color: colorScheme.outline,
-                                        ),
+                                Positioned(
+                                  top: 10,
+                                  child: SizedBox(
+                                    width: 80,
+                                    height: 80,
+                                    child: CircularProgressIndicator(
+                                      value: 450 / 500,
+                                      strokeWidth: 7,
+                                      backgroundColor: Colors.grey[300],
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.blue,
                                       ),
-                                      TextSpan(
-                                        text: '450분',
-                                        style: textTheme.bodyLarge?.copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: colorScheme.primary,
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                                Spacer(),
-                                Text.rich(
-                                  textAlign: TextAlign.center,
-                                  TextSpan(
-                                    children: [
+                                Column(
+                                  children: [
+                                    SizedBox(height: 30),
+                                    Text.rich(
+                                      textAlign: TextAlign.center,
                                       TextSpan(
-                                        text: '소모 칼로리\n',
-                                        style: textTheme.bodySmall?.copyWith(color: colorScheme.outline),
+                                        children: [
+                                          TextSpan(
+                                            text: '운동시간\n',
+                                            style: textTheme.bodySmall?.copyWith(
+                                              color: colorScheme.outline,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: '$data분',
+                                            style: textTheme.bodyLarge?.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: colorScheme.primary,
+                                            ),
+                                          ),
+                                        ],
                                       ),
+                                    ),
+                                    Spacer(),
+                                    Text.rich(
+                                      textAlign: TextAlign.center,
                                       TextSpan(
-                                        text: '${f1.format(2400)} kcal',
-                                        style: textTheme.bodyLarge?.copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: colorScheme.primary,
-                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: '소모 칼로리\n',
+                                            style: textTheme.bodySmall?.copyWith(color: colorScheme.outline),
+                                          ),
+                                          TextSpan(
+                                            text: '${f1.format(2400)} kcal',
+                                            style: textTheme.bodyLarge?.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: colorScheme.primary,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ],
-                            ),
-                          ],
+                            );
+                          }
                         ),
                       ),
                     ),
