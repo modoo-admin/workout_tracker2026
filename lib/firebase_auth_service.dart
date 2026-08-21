@@ -30,6 +30,9 @@ class FirebaseAuthService {
       throw Exception('회원가입 에러:$e');
     }
 
+    if(errorMessage != null){
+      throw Exception(errorMessage);
+    }
   }
 
 
