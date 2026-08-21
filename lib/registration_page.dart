@@ -1,6 +1,8 @@
 // filename: registration_page.dart
 import 'package:flutter/material.dart';
 
+import 'firebase_auth_service.dart';
+
 class RegistrationPage extends StatelessWidget {
   RegistrationPage({super.key});
   final _formKey = GlobalKey<FormState>();
@@ -8,6 +10,7 @@ class RegistrationPage extends StatelessWidget {
   String? email;
   String? password;
   final TextEditingController _passwordController = TextEditingController();
+  FirebaseAuthService _auth=FirebaseAuthService();
 
 
   @override
