@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "757515336429",
+    "project_id": "workouttracker-yongsan2026",
+    "storage_bucket": "workouttracker-yongsan2026.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757515336429:android:af35ceb3a373de366daae4",
+        "android_client_info": {
+          "package_name": "com.modoo.workout_tracker_2026"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3124OoTXSmsSkiuu1czpP_7UVN2INQu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
