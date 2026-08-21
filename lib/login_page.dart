@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-
+  final _formKey = GlobalKey<FormState>();
+  String? email;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -14,117 +16,147 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    'My perfect workout mate',
-                    style: textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: colorScheme.primary,
+          child: Form(
+            key:_formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'My perfect workout mate',
+                      style: textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: colorScheme.primary,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Flexible(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Workout\nTracker',
-                        style: textTheme.displayLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: colorScheme.primary,
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Workout\nTracker',
+                          style: textTheme.displayLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: colorScheme.primary,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Image.asset(
-                          'assets/runner_icon.png',
-                          width: 32,
-                          color: colorScheme.primary,
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Image.asset(
+                            'assets/runner_icon.png',
+                            width: 32,
+                            color: colorScheme.primary,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 50),
-              TextFormField(
-                style: TextStyle(color: Colors.black),
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w500,),
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  hintText: 'example@example.com',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  prefixIcon: Icon(Icons.email_outlined),
-                ),
-              ),
-              SizedBox(height: 20),
-              TextFormField(
-                style: TextStyle(color: Colors.black),
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w500,),
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  prefixIcon: Icon(Icons.lock_outline, color: Colors.black),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-                obscureText: true,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Text('Forgot your password?'),
-                  )
-                ],
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    backgroundColor: colorScheme.primary,
-                    shape: RoundedRectangleBorder(
+                SizedBox(height: 50),
+                TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w500,),
+                    filled: true,
+                    fillColor: Colors.grey.shade200,
+                    hintText: 'example@example.com',
+                    border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    prefixIcon: Icon(Icons.email_outlined),
+                  ),
+                  validator:(value){
+                    if(value==null || value.isEmpty){
+                      return '이메일을 입력하세요';
+                    }
+                    return null;
+                  },
+                  onSaved:(value){
+                    email=value;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w500,),
+                    filled: true,
+                    fillColor: Colors.grey.shade200,
+                    prefixIcon: Icon(Icons.lock_outline, color: Colors.black),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
                     ),
                   ),
-                  child: Text(
-                    '로그인',
-                    style: textTheme.titleLarge?.copyWith(
-                      color: colorScheme.onPrimary,
+                  obscureText: true,
+                  validator: (value){
+                    if(value==null || value.isEmpty){
+                      return '패스워드를 입력하세요';
+                    }
+                    if(value.length < 6){
+                      return '6자리 이상 입력하세요.';
+                    }
+                    return null;
+                  },
+                  onSaved:(value){
+                    password=value;
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Forgot your password?'),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if(_formKey.currentState?.validate()??false){
+                        _formKey.currentState?.save();
+                        //backend 전송 : email, password
+                        //fb.auth.login(email,password);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      backgroundColor: colorScheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      '로그인',
+                      style: textTheme.titleLarge?.copyWith(
+                        color: colorScheme.onPrimary,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Don\'t have an account?'),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text('Sign up'),
-                  )
-                ],
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Don\'t have an account?'),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Sign up'),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
