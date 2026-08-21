@@ -8,6 +8,8 @@ class RegistrationPage extends StatelessWidget {
   String? email;
   String? password;
   final TextEditingController _passwordController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -132,7 +134,14 @@ class RegistrationPage extends StatelessWidget {
                     border: UnderlineInputBorder(),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
-                  
+                  validator: (value){
+                    if(value==null || value.isEmpty){
+                      return "비밀번호를 한번더 입력하세요.";
+                    }else if(value != _passwordController.text){
+                      return "비밀번호가 일치하지 않습니다.";
+                    }
+                    return null;
+                  },
 
                 ),
                 SizedBox(height: 16),
@@ -140,8 +149,8 @@ class RegistrationPage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
+                      if (_formKey.currentState?.validate()??false) {
+                        _formKey.currentState?.save();
                       }
                     },
                     style: ElevatedButton.styleFrom(
