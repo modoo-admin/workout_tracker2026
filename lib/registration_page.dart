@@ -154,6 +154,7 @@ class RegistrationPage extends StatelessWidget {
                     onPressed: () {
                       if (_formKey.currentState?.validate()??false) {
                         _formKey.currentState?.save();
+                        _auth.signUpWithEmail(email: email!, password: password!, name:name);
                       }
                     },
                     style: ElevatedButton.styleFrom(

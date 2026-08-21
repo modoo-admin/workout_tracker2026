@@ -12,9 +12,14 @@ class FirebaseAuthService {
     required String password,
     String? name,
   }) async {
-    await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    await _auth.currentUser?.updateDisplayName(name);
-    await _auth.currentUser?.sendEmailVerification();
+    try{
+      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      await _auth.currentUser?.updateDisplayName(name);
+      await _auth.currentUser?.sendEmailVerification();
+    }catch(e){
+      throw Exception('회원가입 에러:$e');
+    }
+
   }
 
 
