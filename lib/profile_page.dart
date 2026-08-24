@@ -13,8 +13,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final _auth=FirebaseAuthService();
-  final _storage=FirebaseStorageService();
+  final _auth = FirebaseAuthService();
+  final _storage = FirebaseStorageService();
 
   final _formKey = GlobalKey<FormState>();
   String? name;
@@ -22,20 +22,25 @@ class _ProfilePageState extends State<ProfilePage> {
   String? profileImageURL;
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> _pickImage() async{
-    final XFile? pickedFile=await _picker.pickImage(source:ImageSource.gallery);
-    if(pickedFile !=null){
-
+  Future<void> _pickImage() async {
+    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      await _storage.uploadProfileImage(
+        bytes: await pickedFile.readAsBytes(),
+        path: pickedFile.path,
+      );
     }
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    name=_auth.user?.displayName;
-    email=_auth.user?.email;
-    profileImageURL=_auth.user?.photoURL;
+    name = _auth.user?.displayName;
+    email = _auth.user?.email;
+    profileImageURL = _auth.user?.photoURL;
   }
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -65,13 +70,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         onTap: _pickImage,
                         child: CircleAvatar(
                           radius: 60,
-                          backgroundImage:
-                          profileImageURL != null
-                              ? NetworkImage(profileImageURL!)
-                              : const AssetImage('assets/me.png'),
+                          backgroundImage: profileImageURL != null ? NetworkImage(profileImageURL!) : const AssetImage('assets/me.png'),
 
                           backgroundColor: Colors.transparent,
-                          child:Icon(
+                          child: Icon(
                             Icons.camera_alt,
                             size: textTheme.headlineMedium?.fontSize,
                             color: colorScheme.onPrimary,
@@ -115,7 +117,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     borderSide: BorderSide(color: colorScheme.primary),
                   ),
                 ),
-                
               ),
               TextFormField(
                 enabled: false,
