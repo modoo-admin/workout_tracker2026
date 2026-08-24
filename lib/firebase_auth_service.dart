@@ -8,7 +8,13 @@ class FirebaseAuthService {
   }
 
   User? get user=> _auth.currentUser;
-
+  Future<void> updatePhotoUrl(String? url) async{
+    try{
+      await _auth.currentUser?.updatePhotoURL(url);
+    }catch(e){
+      throw Exception('수정 실패:$e');
+    }
+  }
   Future<void> signUpWithEmail({
     required String email,
     required String password,
