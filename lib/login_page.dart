@@ -134,6 +134,7 @@ class LoginPage extends StatelessWidget {
                         //fb.auth.login(email,password);
                         _auth.signUpWithEmail(email: email!, password: password!)
                             .then((value){
+                              showSnackbar(context, '로그인성공');
                               context.go('/workout_home');
                         })
                             .catchError((error){
