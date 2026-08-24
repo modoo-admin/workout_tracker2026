@@ -1,5 +1,8 @@
 //filename:profile_page.dart
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'firebase_auth_service.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -9,11 +12,27 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final _auth=FirebaseAuthService();
   final _formKey = GlobalKey<FormState>();
   String? name;
   String? email;
   String? profileImageURL;
+  final ImagePicker _picker = ImagePicker();
 
+  Future<void> _pickImage() async{
+    final XFile? pickedFile=await _picker.pickImage(source:ImageSource.gallery);
+    if(pickedFile !=null){
+      
+    }
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    name=_auth.user?.displayName;
+    email=_auth.user?.email;
+    profileImageURL=_auth.user?.photoURL;
+  }
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -77,6 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               TextFormField(
+                initialValue: name,
                 decoration: InputDecoration(
                   labelText: 'Name',
                   labelStyle: textTheme.titleLarge,
@@ -93,6 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               TextFormField(
                 enabled: false,
+                initialValue: email,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   labelStyle: textTheme.titleLarge,

@@ -7,6 +7,8 @@ class FirebaseAuthService {
     _auth.setLanguageCode('kr');
   }
 
+  User? get user=> _auth.currentUser;
+
   Future<void> signUpWithEmail({
     required String email,
     required String password,
