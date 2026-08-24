@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'firebase_auth_service.dart';
+import 'show_snackbar.dart';
 
 class RegistrationPage extends StatelessWidget {
   RegistrationPage({super.key});
@@ -10,8 +11,7 @@ class RegistrationPage extends StatelessWidget {
   String? email;
   String? password;
   final TextEditingController _passwordController = TextEditingController();
-  FirebaseAuthService _auth=FirebaseAuthService();
-
+  FirebaseAuthService _auth = FirebaseAuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,6 @@ class RegistrationPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 16),
-
                   ],
                 ),
                 SizedBox(height: 16),
@@ -68,34 +67,34 @@ class RegistrationPage extends StatelessWidget {
                     border: UnderlineInputBorder(),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
-                  validator:(value){
-                    if(value==null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return '이름을 입력하세요';
                     }
                     return null;
                   },
-                  onSaved:(value){
-                    name=value;
+                  onSaved: (value) {
+                    name = value;
                   },
                 ),
                 SizedBox(height: 16),
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: '이메일',
-                    labelStyle:  textTheme.headlineSmall,
+                    labelStyle: textTheme.headlineSmall,
                     hintText: 'example@example.com',
                     border: UnderlineInputBorder(),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                   keyboardType: TextInputType.emailAddress,
-                  validator:(value){
-                    if(value==null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return '이메일을 입력하세요';
                     }
                     return null;
                   },
-                  onSaved:(value){
-                    email=value;
+                  onSaved: (value) {
+                    email = value;
                   },
                 ),
                 SizedBox(height: 16),
@@ -103,7 +102,7 @@ class RegistrationPage extends StatelessWidget {
                   controller: _passwordController,
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    labelStyle:  textTheme.headlineSmall,
+                    labelStyle: textTheme.headlineSmall,
                     hintText: '비밀번호를 입력하세요',
                     helperText: '*비밀번호는 6자 이상 입력해주세요.',
                     helperStyle: textTheme.bodySmall?.copyWith(
@@ -113,19 +112,18 @@ class RegistrationPage extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                   obscureText: true,
-                  validator: (value){
-                    if(value==null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return '패스워드를 입력하세요';
                     }
-                    if(value.length < 6){
+                    if (value.length < 6) {
                       return '6자리 이상 입력하세요.';
                     }
                     return null;
                   },
-                  onSaved:(value){
-                    password=value;
+                  onSaved: (value) {
+                    password = value;
                   },
-
                 ),
                 SizedBox(height: 16),
                 TextFormField(
@@ -137,24 +135,35 @@ class RegistrationPage extends StatelessWidget {
                     border: UnderlineInputBorder(),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
-                  validator: (value){
-                    if(value==null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "비밀번호를 한번더 입력하세요.";
-                    }else if(value != _passwordController.text){
+                    } else if (value != _passwordController.text) {
                       return "비밀번호가 일치하지 않습니다.";
                     }
                     return null;
                   },
-
                 ),
                 SizedBox(height: 16),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState?.validate()??false) {
+                      if (_formKey.currentState?.validate() ?? false) {
                         _formKey.currentState?.save();
-                        _auth.signUpWithEmail(email: email!, password: password!, name:name);
+                        _auth.signUpWithEmail(
+                          email: email!,
+                          password: password!,
+                          name: name,
+                        ).then((value){
+                          //success data, return data
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content:Text('가입성공'))
+                          );
+                        }).catchError((error){
+                          //throw된 Exception객체
+                          showSnackbar(context,'$error');
+                        });
                       }
                     },
                     style: ElevatedButton.styleFrom(
