@@ -1,6 +1,8 @@
 //fielname:settings_page.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workout_tracker_2026/show_snackbar.dart';
+import 'firebase_auth_service.dart';
 import 'widgets/item_card.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -12,6 +14,7 @@ class SettingsPage extends StatelessWidget {
       size: 20.0,
     );
   }
+  FirebaseAuthService _auth = FirebaseAuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +43,25 @@ class SettingsPage extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     ItemCard(
-                      title: '로그인',
+                      title:_auth.isLoggedIn()?'로그아웃':'로그인',
                       color: (brightness == Brightness.light)
                           ? Colors.white
                           : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: null,
                       callback: () {
+                        if(_auth.isLoggedIn()){
+                          _auth.signOut()
+                              .then((value){
+                                showSnackbar(context, '로그아웃 완료');
+                                context.go('/settings/login');
+                          })
+                              .catchError((error){
+                            showSnackbar(context, '$error');
+                          });
+                        }else{
                           context.go('/settings/login');
+                        }
+
                       },
                     ),
                     ItemCard(
