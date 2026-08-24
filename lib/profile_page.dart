@@ -33,6 +33,9 @@ class _ProfilePageState extends State<ProfilePage> {
           path: pickedFile.path,
           uid: _auth.user?.uid,
         );
+
+        await _auth.updatePhotoUrl(downloadUrl);
+
         setState(() {
           profileImageURL=downloadUrl;
         });

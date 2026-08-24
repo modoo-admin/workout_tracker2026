@@ -4,6 +4,15 @@ import 'package:flutter/foundation.dart';
 class FirebaseStorageService {
   final storageRef = FirebaseStorage.instance.ref();
 
+  Future<void> deleteProfileImage(String? uid) async{
+    if(uid==null) throw Exception('잘못된 접근');
+    final profileRef=storageRef.child('user_profiles/${uid}_profile_image.png');
+    try{
+      profileRef.delete();
+    }catch(e){
+      throw Exception('삭제실패:$e');
+    }
+  }
   Future<String> uploadProfileImage({
     required Uint8List bytes,
     required String path,
