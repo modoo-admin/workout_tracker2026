@@ -37,7 +37,14 @@ class FirebaseAuthService {
 
 
 
-  Future<void> signInWithEmail() async {}
+  Future<void> signInWithEmail({required String email, required String password}) async {
+    try{
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    }catch(e){
+      throw Exception('로그인 에러:$e');
+    }
+
+  }
   Future<void> resetPassword() async {}
   Future<void> signOut() async {}
   Future<void> deleteAccount() async {}
