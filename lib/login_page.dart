@@ -132,7 +132,7 @@ class LoginPage extends StatelessWidget {
                         _formKey.currentState?.save();
                         //backend 전송 : email, password
                         //fb.auth.login(email,password);
-                        _auth.signUpWithEmail(email: email!, password: password!)
+                        _auth.signInWithEmail(email: email!, password: password!)
                             .then((value){
                               showSnackbar(context, '로그인성공');
                               context.go('/workout_home');

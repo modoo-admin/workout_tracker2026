@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _pickImage() async{
     final XFile? pickedFile=await _picker.pickImage(source:ImageSource.gallery);
     if(pickedFile !=null){
-      
+
     }
   }
   @override
@@ -58,18 +58,21 @@ class _ProfilePageState extends State<ProfilePage> {
                           width: 1.0,
                         ),
                       ),
-                      child: CircleAvatar(
-                        radius: 60,
-                        backgroundImage:
-                        profileImageURL != null
-                            ? NetworkImage(profileImageURL!)
-                            : const AssetImage('assets/me.png'),
-                        
-                        backgroundColor: Colors.transparent,
-                        child:Icon(
-                          Icons.camera_alt,
-                          size: textTheme.headlineMedium?.fontSize,
-                          color: colorScheme.onPrimary,
+                      child: GestureDetector(
+                        onTap: _pickImage,
+                        child: CircleAvatar(
+                          radius: 60,
+                          backgroundImage:
+                          profileImageURL != null
+                              ? NetworkImage(profileImageURL!)
+                              : const AssetImage('assets/me.png'),
+
+                          backgroundColor: Colors.transparent,
+                          child:Icon(
+                            Icons.camera_alt,
+                            size: textTheme.headlineMedium?.fontSize,
+                            color: colorScheme.onPrimary,
+                          ),
                         ),
                       ),
                     ),
