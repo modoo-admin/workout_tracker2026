@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'firebase_auth_service.dart';
+import 'firebase_storage_service.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -13,6 +14,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final _auth=FirebaseAuthService();
+  final _storage=FirebaseStorageService();
+
   final _formKey = GlobalKey<FormState>();
   String? name;
   String? email;
