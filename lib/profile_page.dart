@@ -31,6 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
         downloadUrl = await _storage.uploadProfileImage(
           bytes: await pickedFile.readAsBytes(),
           path: pickedFile.path,
+          uid: _auth.user?.uid,
         );
         setState(() {
           profileImageURL=downloadUrl;
