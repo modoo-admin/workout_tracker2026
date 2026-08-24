@@ -111,6 +111,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             padding: EdgeInsets.zero,
                             icon: Icon(Icons.close, color: colorScheme.onPrimary),
                             onPressed: () {
+                              _auth.deletePhotoUrl().catchError((error){
+                                showSnackbar(context, '$error');
+                              });
                               _storage.deleteProfileImage(_auth.user?.uid).catchError((error){
                                 showSnackbar(context, '$error');
                               });

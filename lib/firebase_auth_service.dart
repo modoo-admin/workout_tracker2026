@@ -7,6 +7,13 @@ class FirebaseAuthService {
     _auth.setLanguageCode('kr');
   }
 
+  Future<void> deletePhotoUrl() async{
+    try{
+      await _auth.currentUser?.updatePhotoURL(null);
+    }catch(e){
+      throw Exception('$e');
+    }
+  }
   User? get user=> _auth.currentUser;
   Future<void> updatePhotoUrl(String? url) async{
     try{
