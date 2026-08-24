@@ -110,7 +110,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: IconButton(
                             padding: EdgeInsets.zero,
                             icon: Icon(Icons.close, color: colorScheme.onPrimary),
-                            onPressed: () {},
+                            onPressed: () {
+                              _storage.deleteProfileImage(_auth.user?.uid).catchError((error){
+                                showSnackbar(context, '$error');
+                              });
+                            },
                           ),
                         ),
                       ),
