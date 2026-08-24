@@ -1,6 +1,7 @@
 //filename:profile_page.dart
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:workout_tracker_2026/show_snackbar.dart';
 
 import 'firebase_auth_service.dart';
 import 'firebase_storage_service.dart';
@@ -25,10 +26,20 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _pickImage() async {
     final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      await _storage.uploadProfileImage(
-        bytes: await pickedFile.readAsBytes(),
-        path: pickedFile.path,
-      );
+      String? downloadUrl;
+      try {
+        downloadUrl = await _storage.uploadProfileImage(
+          bytes: await pickedFile.readAsBytes(),
+          path: pickedFile.path,
+        );
+        setState(() {
+          profileImageURL=downloadUrl;
+        });
+
+      }catch(e){
+        //error 처리.
+        showSnackbar(context, '$e');
+      }
     }
   }
 
