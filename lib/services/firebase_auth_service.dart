@@ -61,9 +61,12 @@ class FirebaseAuthService {
 
   }
   Future<void> resetPassword() async {}
+
   bool isLoggedIn(){
     return _auth.currentUser != null;
   }
+
+
   Future<void> signOut() async {
     try{
       _auth.signOut();

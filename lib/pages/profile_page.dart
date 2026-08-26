@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:workout_tracker_2026/show_snackbar.dart';
 
-import 'firebase_auth_service.dart';
-import 'firebase_storage_service.dart';
+import '../services/firebase_auth_service.dart';
+import '../services/firebase_storage_service.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

@@ -1,23 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:workout_tracker_2026/landing_page.dart';
-import 'package:workout_tracker_2026/settings_page.dart';
-import 'package:workout_tracker_2026/workout_guide_page.dart';
-import 'package:workout_tracker_2026/workout_home_page.dart';
-import 'package:workout_tracker_2026/workout_list_page.dart';
-import 'package:workout_tracker_2026/workout_shell.dart';
+import 'package:workout_tracker_2026/pages/landing_page.dart';
+import 'package:workout_tracker_2026/pages/settings_page.dart';
+import 'package:workout_tracker_2026/pages/workout_guide_page.dart';
+import 'package:workout_tracker_2026/pages/workout_home_page.dart';
+import 'package:workout_tracker_2026/pages/workout_list_page.dart';
+import 'package:workout_tracker_2026/pages/workout_shell.dart';
 
-import 'login_page.dart';
-import 'profile_page.dart';
-import 'registration_page.dart';
+import 'pages/login_page.dart';
+import 'pages/my_workout_list_page.dart';
+import 'pages/profile_page.dart';
+import 'pages/registration_page.dart';
 
-final GlobalKey<NavigatorState> _rootNavigatorKey= GlobalKey<NavigatorState>(debugLabel:'root');
-final GlobalKey<NavigatorState> _homeNavigatorKey= GlobalKey<NavigatorState>(debugLabel:'home');
-final GlobalKey<NavigatorState> _settingsNavigatorKey= GlobalKey<NavigatorState>(debugLabel:'settings');
+final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final GlobalKey<NavigatorState> _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
+final GlobalKey<NavigatorState> _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
 
 // GoRouter configuration
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
+  redirect: (context, state) {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null && state.uri.path != '/settings/login/registration'
+        && state.uri.path != '/settings/login/reset_password'
+        && state.uri.path != '/') {
+      //로그인 안 된 상태
+      return '/settings/login';
+    }
+    if (user != null
+        && (state.uri.path == '/settings/login'
+        || state.uri.path =='/settings/login/registration')) {
+      //로그인 된 상태
+      return '/settings';
+    }
+  },
   routes: [
     GoRoute(
       path: '/',
@@ -25,32 +42,38 @@ final router = GoRouter(
     ),
     StatefulShellRoute.indexedStack(
       parentNavigatorKey: _rootNavigatorKey,
-      builder:(context, state, navigationShell){
+      builder: (context, state, navigationShell) {
         return WorkoutShell(navigationShell: navigationShell);
         //return Placeholder();
       },
       branches: [
         StatefulShellBranch(
           navigatorKey: _homeNavigatorKey,
-          routes:[
+          routes: [
             GoRoute(
               path: '/workout_home',
               builder: (context, state) => WorkoutHomePage(),
-              routes:[
+              routes: [
+                GoRoute(
+                  path: 'my_workout_list',
+                  builder: (context, state) {
+                    return MyWorkoutListPage();
+                  },
+                ),
                 GoRoute(
                   path: 'workout_list/:group_index',
                   builder: (context, state) {
-                    String? groupIndexString=state.pathParameters['group_index'];
-                    final groupIndex=int.parse(groupIndexString!);
-                    return WorkoutListPage(groupIndex:groupIndex);
+                    String? groupIndexString = state.pathParameters['group_index'];
+                    final groupIndex = int.parse(groupIndexString!);
+                    return WorkoutListPage(groupIndex: groupIndex);
                   },
                   routes: [
                     GoRoute(
                       path: 'workout_guide/:workouts_index',
                       builder: (context, state) {
-                        String? workoutsIndexString=state.pathParameters['workouts_index'];
-                        final workoutsIndex=int.parse(workoutsIndexString!);
-                        return WorkoutGuidePage(workoutsIndex:workoutsIndex);
+                        String? workoutsIndexString = state.pathParameters['workouts_index'];
+                        final workoutsIndex = int.parse(workoutsIndexString!);
+                        return WorkoutGuidePage(workoutsIndex: workoutsIndex);
                       },
                     ),
                   ],
@@ -61,15 +84,15 @@ final router = GoRouter(
         ),
         StatefulShellBranch(
           navigatorKey: _settingsNavigatorKey,
-          routes:[
+          routes: [
             GoRoute(
               path: '/settings',
               builder: (context, state) => SettingsPage(),
-              routes:[
+              routes: [
                 GoRoute(
                   path: 'login',
                   builder: (context, state) => LoginPage(),
-                  routes:[
+                  routes: [
                     GoRoute(
                       path: 'registration',
                       builder: (context, state) => RegistrationPage(),
@@ -81,12 +104,11 @@ final router = GoRouter(
                   path: 'profile',
                   builder: (context, state) => ProfilePage(),
                 ),
-              ]
+              ],
             ),
-
           ],
         ),
-      ]
+      ],
     ),
   ],
 );

@@ -1,8 +1,8 @@
 // filename: registration_page.dart
 import 'package:flutter/material.dart';
 
-import 'firebase_auth_service.dart';
-import 'show_snackbar.dart';
+import '../services/firebase_auth_service.dart';
+import '../show_snackbar.dart';
 
 class RegistrationPage extends StatelessWidget {
   RegistrationPage({super.key});

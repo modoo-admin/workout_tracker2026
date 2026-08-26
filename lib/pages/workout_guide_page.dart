@@ -1,8 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-import 'workout.dart';
-import 'workout_manager.dart';
+import '../models/workout.dart';
+import '../logic/workout_manager.dart';
 
 class WorkoutGuidePage extends StatefulWidget {
   int workoutsIndex;
