@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
 import '../models/my_workout.dart';
@@ -16,7 +18,7 @@ class MyWorkoutProvider extends ChangeNotifier{
     ),
   ];
   List<MyWorkout> get workouts{
-    return _workouts;
+    return UnmodifiableListView(_workouts);
   }
 
 }
