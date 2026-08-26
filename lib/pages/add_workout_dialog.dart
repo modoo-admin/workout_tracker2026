@@ -3,8 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:workout_tracker_2026/show_snackbar.dart';
 
+import '../logic/my_workout_provider.dart';
+import '../models/my_workout.dart';
 import '../services/firebase_storage_service.dart';
 
 class AddWorkoutDialog extends StatefulWidget {
@@ -157,6 +160,14 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
                 print(newWorkoutImageUrl);
                 print(newWorkoutTitle);
                 print(newWorkoutMinutes);
+                Provider.of<MyWorkoutProvider>(context, listen:false).addMyWorkout(
+                  MyWorkout(
+                    name: newWorkoutTitle!,
+                    minutes: newWorkoutMinutes!,
+                    imageURL: newWorkoutImageUrl!,
+                  )
+                );
+                //context.read<MyWorkoutProvider>;
               },
               child: Text(
                 '운동 추가',

@@ -20,5 +20,8 @@ class MyWorkoutProvider extends ChangeNotifier{
   List<MyWorkout> get workouts{
     return UnmodifiableListView(_workouts);
   }
-
+  void addMyWorkout(MyWorkout myWorkout){
+    _workouts.add(myWorkout);
+    notifyListeners();
+  }
 }
