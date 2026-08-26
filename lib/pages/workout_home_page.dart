@@ -460,7 +460,9 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                         child: Center(
                           child: IconButton(
                             icon: const Icon(Icons.add),
-                            onPressed: () {},
+                            onPressed: () {
+                              context.go('/workout_home/my_workout_list');
+                            },
                             splashRadius: 24,
                           ),
                         ),

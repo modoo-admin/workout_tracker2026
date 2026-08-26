@@ -64,7 +64,16 @@ class MyWorkoutListPage extends StatelessWidget {
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+           context:context,
+           builder:(context){
+             return Dialog(
+               child: AddWorkoutDialog(),
+             );
+           }
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
