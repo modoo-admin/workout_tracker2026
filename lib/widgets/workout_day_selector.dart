@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class WorkoutDaySelector extends StatefulWidget {
-  const WorkoutDaySelector({super.key});
+   WorkoutDaySelector({super.key});
 
   @override
   State<WorkoutDaySelector> createState() => _WorkoutDaySelectorState();
@@ -10,6 +10,9 @@ class WorkoutDaySelector extends StatefulWidget {
 
 class _WorkoutDaySelectorState extends State<WorkoutDaySelector> {
   List<bool> isSelected = List.filled(7, false);
+  void updateIsSelected(int index){
+    isSelected[index]=!isSelected[index];
+  }
   @override
   Widget build(BuildContext context) {
     return ToggleButtons(
@@ -27,6 +30,11 @@ class _WorkoutDaySelectorState extends State<WorkoutDaySelector> {
         Text('토'),
         Text('일'),
       ],
+      onPressed: (index){
+        setState(() {
+          updateIsSelected(index);
+        });
+      },
     );
   }
 }
