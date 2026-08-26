@@ -1,6 +1,9 @@
 //filename:add_workout_dialog.dart
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:workout_tracker_2026/show_snackbar.dart';
 
 import '../services/firebase_storage_service.dart';
 
@@ -12,25 +15,37 @@ class AddWorkoutDialog extends StatefulWidget {
 }
 
 class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
-  
   Future<void> _pickImage() async {
     //이미지 선택 코드
+    try {
+      _pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      if (_pickedFile != null) {
+        _previewImage = FileImage(File(_pickedFile!.path));
+      }
+    } catch (e) {
+      showSnackbar(context, '$e');
+    }
   }
+
   Future<String?> uploadWorkout(XFile? pickedFile) async {
     //이미지 upload 코드
+
   }
   String? newWorkoutTitle;
   int? newWorkoutMinutes;
+  String? newWorkoutImageUrl;
+
+  final FirebaseStorageService _storage = FirebaseStorageService();
+  final ImagePicker _picker = ImagePicker();
+  ImageProvider? _previewImage;
+  XFile? _pickedFile;
 
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
-    TextTheme textTheme=Theme.of(context).textTheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: colorScheme.onPrimary
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: colorScheme.onPrimary),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         spacing: 18,
@@ -39,19 +54,16 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
             padding: const EdgeInsets.all(18.0),
             child: Center(
               child: Text(
-                  '나만의 운동 추가하기',
-                  style:textTheme.titleLarge?.copyWith(
-                      color: colorScheme.shadow,
-                      fontWeight: FontWeight.bold
-                  )
+                '나만의 운동 추가하기',
+                style: textTheme.titleLarge?.copyWith(color: colorScheme.shadow, fontWeight: FontWeight.bold),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
-              onChanged: (value){
-                newWorkoutTitle=value;
+              onChanged: (value) {
+                newWorkoutTitle = value;
               },
               decoration: InputDecoration(
                 labelText: '운동명',
@@ -76,7 +88,10 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  image:null,
+                  image: _previewImage  !=null?DecorationImage(
+                    image: _previewImage!,
+                    fit: BoxFit.cover,
+                  ):null,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey.shade300, width: 1),
                 ),
@@ -99,14 +114,13 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
                   ),
                 ),
               ),
-
             ],
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
-              onChanged: (value){
-                newWorkoutMinutes=int.parse(value);
+              onChanged: (value) {
+                newWorkoutMinutes = int.parse(value);
               },
               decoration: InputDecoration(
                 labelText: '운동 시간',
@@ -114,7 +128,6 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
                 border: UnderlineInputBorder(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
-
             ),
           ),
           Container(
@@ -128,8 +141,7 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
             height: 50,
             width: double.infinity,
             child: TextButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               child: Text(
                 '운동 추가',
                 style: textTheme.titleLarge?.copyWith(
