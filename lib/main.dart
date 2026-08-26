@@ -24,11 +24,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
-      theme: FlexThemeData.light(scheme: FlexScheme.redWine),
-      darkTheme: FlexThemeData.dark(scheme: FlexScheme.redWine),
-      themeMode: ThemeMode.system,
+    return MultiProvider(
+      providers:[
+
+      ],
+      child: MaterialApp.router(
+        routerConfig: router,
+        theme: FlexThemeData.light(scheme: FlexScheme.redWine),
+        darkTheme: FlexThemeData.dark(scheme: FlexScheme.redWine),
+        themeMode: ThemeMode.system,
+      ),
     );
     // return MaterialApp(
     //   home: WorkoutHomePage(),
