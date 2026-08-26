@@ -19,6 +19,8 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
   Future<String?> uploadWorkout(XFile? pickedFile) async {
     //이미지 upload 코드
   }
+  String? newWorkoutTitle;
+  int? newWorkoutMinutes;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,9 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
-
+              onChanged: (value){
+                newWorkoutTitle=value;
+              },
               decoration: InputDecoration(
                 labelText: '운동명',
                 labelStyle: Theme.of(context).textTheme.headlineSmall,
@@ -101,6 +105,9 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextField(
+              onChanged: (value){
+                newWorkoutMinutes=int.parse(value);
+              },
               decoration: InputDecoration(
                 labelText: '운동 시간',
                 labelStyle: textTheme.headlineSmall,
