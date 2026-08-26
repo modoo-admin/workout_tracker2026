@@ -5,6 +5,7 @@ import 'package:workout_tracker_2026/pages/workout_home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'logic/my_workout_provider.dart';
 import 'my_router.dart';
 import 'pages/workout_guide_page.dart';
 import 'pages/workout_list_page.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers:[
-
+        ChangeNotifierProvider(create:(_)=> MyWorkoutProvider()),
       ],
       child: MaterialApp.router(
         routerConfig: router,
