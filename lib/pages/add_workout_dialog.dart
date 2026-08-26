@@ -21,6 +21,9 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
       _pickedFile = await _picker.pickImage(source: ImageSource.gallery);
       if (_pickedFile != null) {
         _previewImage = FileImage(File(_pickedFile!.path));
+        setState(() {
+
+        });
       }
     } catch (e) {
       showSnackbar(context, '$e');
@@ -29,8 +32,14 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
 
   Future<String?> uploadWorkout(XFile? pickedFile) async {
     //이미지 upload 코드
-
+    if(pickedFile == null ) return null;
+    return await _storage.uploadWorkoutImage(
+      bytes: await pickedFile.readAsBytes(),
+      path: pickedFile.path,
+      pickedFileHash: pickedFile.hashCode,
+    );
   }
+
   String? newWorkoutTitle;
   int? newWorkoutMinutes;
   String? newWorkoutImageUrl;
@@ -88,10 +97,12 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  image: _previewImage  !=null?DecorationImage(
-                    image: _previewImage!,
-                    fit: BoxFit.cover,
-                  ):null,
+                  image: _previewImage != null
+                      ? DecorationImage(
+                          image: _previewImage!,
+                          fit: BoxFit.cover,
+                        )
+                      : null,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey.shade300, width: 1),
                 ),
@@ -141,7 +152,12 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
             height: 50,
             width: double.infinity,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () async{
+                await uploadWorkout(_pickedFile);
+                print(newWorkoutImageUrl);
+                print(newWorkoutTitle);
+                print(newWorkoutMinutes);
+              },
               child: Text(
                 '운동 추가',
                 style: textTheme.titleLarge?.copyWith(
