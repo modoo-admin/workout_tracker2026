@@ -9,7 +9,7 @@ class FirestoreService {
     try{
       final myWorkoutsCollection=_fs.collection('myworkouts');
       final docRef=await myWorkoutsCollection.add(myWorkout.toMap());
-      docRef.update({'id':docRef.id});
+      await docRef.update({'id':docRef.id});
     }catch(e){
       throw Exception('db error:$e');
     }
