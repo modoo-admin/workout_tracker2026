@@ -67,7 +67,7 @@ class WorkoutTile extends StatelessWidget {
             ),
           ],
         ),
-        subtitle:  WorkoutDaySelector(),
+        subtitle:  WorkoutDaySelector(workoutIndex: index,),
       ),
     );
   }
