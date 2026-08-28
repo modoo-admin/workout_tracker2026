@@ -7,12 +7,19 @@ class FirestoreService {
 
   Future<void> createMyWorkout(MyWorkout myWorkout) async{
     try{
-
+      final myWorkoutsCollection=_fs.collection('myworkouts');
+      Map<String,dynamic> createData={
+        'name':myWorkout.name,
+        'minutes':myWorkout.minutes,
+        'imageURL':myWorkout.imageURL,
+        'workoutDays':myWorkout.workoutDays,
+      };
+      await myWorkoutsCollection.add(createData);
     }catch(e){
       throw Exception('db error:$e');
     }
   }
-  
+
   Future<MyWorkout?> readMyWorkout(String workoutId) async {
     try{
 

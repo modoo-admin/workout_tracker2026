@@ -156,7 +156,7 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
             width: double.infinity,
             child: TextButton(
               onPressed: () async{
-                await uploadWorkout(_pickedFile);
+                newWorkoutImageUrl=await uploadWorkout(_pickedFile);
                 print(newWorkoutImageUrl);
                 print(newWorkoutTitle);
                 print(newWorkoutMinutes);
@@ -167,6 +167,8 @@ class _AddWorkoutDialogState extends State<AddWorkoutDialog> {
                     imageURL: newWorkoutImageUrl!,
                   )
                 );
+
+                Navigator.pop(context);
                 //context.read<MyWorkoutProvider>;
               },
               child: Text(

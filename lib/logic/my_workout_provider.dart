@@ -3,8 +3,10 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 
 import '../models/my_workout.dart';
+import '../services/firestore_service.dart';
 
 class MyWorkoutProvider extends ChangeNotifier{
+  final _firestoreService=FirestoreService();
   final List<MyWorkout> _workouts = [
     MyWorkout(
       name: '어깨 스트레칭',
@@ -23,6 +25,7 @@ class MyWorkoutProvider extends ChangeNotifier{
     return UnmodifiableListView(_workouts);
   }
   Future<void> addMyWorkout(MyWorkout myWorkout)async{
+    await _firestoreService.createMyWorkout(myWorkout);
     _workouts.add(myWorkout);
     //db에 추가 기능
     notifyListeners();

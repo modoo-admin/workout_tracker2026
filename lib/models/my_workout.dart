@@ -18,7 +18,19 @@ class MyWorkout {
     }
     return List<bool>.of(days, growable:false);
   }
+
+  Map<String,dynamic> toMap(){
+    return {
+      'name':name,
+      'minutes':minutes,
+      'imageURL':imageURL,
+      'workoutDays':workoutDays,
+    };
+  }
+  
 }
+
+
 
 void sample(){
   MyWorkout(
