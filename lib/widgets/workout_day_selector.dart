@@ -9,7 +9,7 @@ class WorkoutDaySelector extends StatefulWidget {
 }
 
 class _WorkoutDaySelectorState extends State<WorkoutDaySelector> {
-  List<bool> isSelected = List.filled(7, false);
+  List<bool> isSelected = List.filled(7, false,growable: false);
   void updateIsSelected(int index){
     isSelected[index]=!isSelected[index];
   }

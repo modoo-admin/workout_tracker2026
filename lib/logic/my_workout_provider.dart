@@ -20,8 +20,14 @@ class MyWorkoutProvider extends ChangeNotifier{
   List<MyWorkout> get workouts{
     return UnmodifiableListView(_workouts);
   }
-  void addMyWorkout(MyWorkout myWorkout){
+  Future<void> addMyWorkout(MyWorkout myWorkout)async{
     _workouts.add(myWorkout);
+    //db에 추가 기능
+    notifyListeners();
+  }
+
+  Future<void> deleteMyWorkout(int deleteIndex) async{
+    _workouts.removeAt(deleteIndex);
     notifyListeners();
   }
 }
