@@ -1,10 +1,12 @@
 class MyWorkout {
+  String? id;
   String name;
   String imageURL;
   int minutes;
   List<bool> workoutDays;
 
   MyWorkout({
+    this.id,
     required this.name,
     required this.imageURL,
     required this.minutes,
@@ -21,13 +23,14 @@ class MyWorkout {
 
   Map<String,dynamic> toMap(){
     return {
+      'id':id,
       'name':name,
       'minutes':minutes,
       'imageURL':imageURL,
       'workoutDays':workoutDays,
     };
   }
-  
+
 }
 
 
