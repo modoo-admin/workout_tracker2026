@@ -4,14 +4,18 @@ class MyWorkout {
   String imageURL;
   int minutes;
   List<bool> workoutDays;
+  String? uid;
+  DateTime createdAt;
 
   MyWorkout({
     this.id,
     required this.name,
     required this.imageURL,
     required this.minutes,
-    List<bool>? workoutDays
-  }):workoutDays=_normalizeDays(workoutDays);
+    this.uid,
+    List<bool>? workoutDays,
+    DateTime? createdAt,
+  }):workoutDays=_normalizeDays(workoutDays), createdAt=createdAt??DateTime.now();
   //workoutDays=workoutDays??List<bool>.filled(7,false,growable: false)
   static List<bool> _normalizeDays(List<bool>? days){
     assert(days == null || days.length == 7, 'length가 7이어야함');
@@ -28,6 +32,8 @@ class MyWorkout {
       'minutes':minutes,
       'imageURL':imageURL,
       'workoutDays':workoutDays,
+      'uid':uid,
+      'createdAt':createdAt,
     };
   }
 
