@@ -30,13 +30,14 @@ class FirestoreService {
     }
     return null;
   }
-  Future<List<MyWorkout>> fetchAllMyWorkouts(String uid) async{
+  Future<List<MyWorkout>> fetchAllMyWorkouts({required String uid, int limit=5}) async{
     try{
       final myWorkoutsCollection=_fs.collection('myworkouts');
       final query=myWorkoutsCollection
           .where('uid', isEqualTo: uid)
           .orderBy('createdAt')
-          .orderBy('id');
+          .orderBy('id')
+          .limit(limit);
 
 
       final querySnapshot=await query.get();

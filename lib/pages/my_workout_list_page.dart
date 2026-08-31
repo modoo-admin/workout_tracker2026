@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../logic/my_workout_provider.dart';
 import '../models/my_workout.dart';
+import '../sample_data.dart';
 import '../widgets/workout_tile.dart';
 import 'add_workout_dialog.dart';
 
@@ -18,7 +19,11 @@ class _MyWorkoutListPageState extends State<MyWorkoutListPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<MyWorkoutProvider>(context,listen:false).fetchAllMyWorkouts();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      Provider.of<MyWorkoutProvider>(context,listen:false).fetchAllMyWorkouts();
+    });
+
+    //SampleData.insertSampleData();
   }
   @override
   Widget build(BuildContext context) {

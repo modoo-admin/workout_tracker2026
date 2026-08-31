@@ -17,7 +17,7 @@ class MyWorkoutProvider extends ChangeNotifier{
   }
   Future<void> fetchAllMyWorkouts()async{
     if(_auth.user == null) return;
-    final fetchedMyWorkouts=await _firestoreService.fetchAllMyWorkouts(_auth.user!.uid);
+    final fetchedMyWorkouts=await _firestoreService.fetchAllMyWorkouts(uid: _auth.user!.uid,limit: 5);
     _workouts.addAll(fetchedMyWorkouts);
     notifyListeners();
   }

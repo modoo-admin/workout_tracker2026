@@ -27,7 +27,7 @@ class MyWorkout {
     return List<bool>.of(days, growable:false);
   }
   factory MyWorkout.fromMap(Map<String, dynamic> mapData){
-    print('type jh error: ${mapData['workoutDays']}');
+    //print('type jh error: ${mapData['workoutDays']}');
     return MyWorkout(
       id:mapData['id'],
       uid:mapData['uid'],
