@@ -15,13 +15,21 @@ class MyWorkoutListPage extends StatefulWidget {
 }
 
 class _MyWorkoutListPageState extends State<MyWorkoutListPage> {
+  final ScrollController _scrollController = ScrollController();
+  void _scrollListener(){
+    if(_scrollController.position.pixels >= _scrollController.position.maxScrollExtent){
+      Provider.of<MyWorkoutProvider>(context,listen:false).fetchAllMyWorkouts();
+    }
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _scrollController.addListener(_scrollListener);
     WidgetsBinding.instance.addPostFrameCallback((_){
       Provider.of<MyWorkoutProvider>(context,listen:false).fetchAllMyWorkouts();
     });
+
 
     //SampleData.insertSampleData();
   }
@@ -41,6 +49,8 @@ class _MyWorkoutListPageState extends State<MyWorkoutListPage> {
             );
           }
           return ListView.builder(
+            controller: _scrollController,
+            physics: AlwaysScrollableScrollPhysics(),
             itemCount: workouts.length + 1,
             itemBuilder: (context, index) {
               if (index == 0) {
