@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/my_workout.dart';
@@ -35,6 +37,8 @@ class FirestoreService {
           .where('uid', isEqualTo: uid)
           .orderBy('createdAt')
           .orderBy('id');
+
+
       final querySnapshot=await query.get();
       final qdSnapshotList=querySnapshot.docs;
       List<MyWorkout> returnData=[];
@@ -44,6 +48,7 @@ class FirestoreService {
       }
       return returnData;
     }catch(e){
+      log('jh error index:\n${e.toString()}');
       throw Exception('db error:$e');
     }
 

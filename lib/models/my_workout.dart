@@ -27,14 +27,14 @@ class MyWorkout {
     return List<bool>.of(days, growable:false);
   }
   factory MyWorkout.fromMap(Map<String, dynamic> mapData){
-
+    print('type jh error: ${mapData['workoutDays']}');
     return MyWorkout(
       id:mapData['id'],
       uid:mapData['uid'],
       name:mapData['name'],
       imageURL:mapData['imageURL'],
       minutes:mapData['minutes'],
-      workoutDays: mapData['workoutDays'],
+      workoutDays:  List<bool>.from(mapData['workoutDays'] ?? []),
       createdAt:(mapData['createdAt'] as Timestamp).toDate() ,
     );
   }

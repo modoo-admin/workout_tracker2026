@@ -10,7 +10,7 @@ class MyWorkoutProvider extends ChangeNotifier{
   final _firestoreService=FirestoreService();
   final _auth=FirebaseAuthService();
   final List<MyWorkout> _workouts = [
-    
+
   ];
   List<MyWorkout> get workouts{
     return UnmodifiableListView(_workouts);
