@@ -6,9 +6,20 @@ import '../models/my_workout.dart';
 import '../widgets/workout_tile.dart';
 import 'add_workout_dialog.dart';
 
-class MyWorkoutListPage extends StatelessWidget {
+class MyWorkoutListPage extends StatefulWidget {
   MyWorkoutListPage({super.key});
 
+  @override
+  State<MyWorkoutListPage> createState() => _MyWorkoutListPageState();
+}
+
+class _MyWorkoutListPageState extends State<MyWorkoutListPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<MyWorkoutProvider>(context,listen:false).fetchAllMyWorkouts();
+  }
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
