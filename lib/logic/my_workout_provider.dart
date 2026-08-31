@@ -34,6 +34,7 @@ class MyWorkoutProvider extends ChangeNotifier {
   }
 
   Future<void> deleteMyWorkout(int deleteIndex) async {
+    _firestoreService.deleteMyWorkout(_workouts[deleteIndex].id!);
     _workouts.removeAt(deleteIndex);
     notifyListeners();
   }
@@ -43,6 +44,7 @@ class MyWorkoutProvider extends ChangeNotifier {
     required int workoutIndex,
   }) async {
     _workouts[workoutIndex].workoutDays = isSelected;
+    _firestoreService.updateMyWorkout(_workouts[workoutIndex]);
     notifyListeners();
   }
 }

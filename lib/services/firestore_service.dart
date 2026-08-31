@@ -59,7 +59,9 @@ class FirestoreService {
 
   Future<void> updateMyWorkout(MyWorkout myWorkout) async{
     try{
-
+      final myWorkoutsCollection=_fs.collection('myworkouts');
+      final documentRef=myWorkoutsCollection.doc(myWorkout.id);
+      documentRef.update(myWorkout.toMap());
     }catch(e){
       throw Exception('db error:$e');
     }
@@ -67,7 +69,9 @@ class FirestoreService {
 
   Future<void> deleteMyWorkout(String workoutId) async{
     try{
-
+      final myWorkoutsCollection=_fs.collection('myworkouts');
+      final documentRef=myWorkoutsCollection.doc(workoutId);
+      await documentRef.delete();
     }catch(e){
       throw Exception('db error:$e');
     }
