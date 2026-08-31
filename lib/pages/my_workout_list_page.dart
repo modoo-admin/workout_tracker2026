@@ -30,6 +30,11 @@ class _MyWorkoutListPageState extends State<MyWorkoutListPage> {
       body: Consumer<MyWorkoutProvider>(
         builder: (context, myWorkoutProvider, child) {
           List<MyWorkout> workouts = myWorkoutProvider.workouts;
+          if(workouts.isEmpty){
+            return Center(
+              child: Text('등록된 운동이 없습니다.'),
+            );
+          }
           return ListView.builder(
             itemCount: workouts.length + 1,
             itemBuilder: (context, index) {
