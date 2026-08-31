@@ -33,6 +33,14 @@ class _MyWorkoutListPageState extends State<MyWorkoutListPage> {
 
     //SampleData.insertSampleData();
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
