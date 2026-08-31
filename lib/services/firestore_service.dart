@@ -17,7 +17,20 @@ class FirestoreService {
 
   Future<MyWorkout?> readMyWorkout(String workoutId) async {
     try{
-
+      final myWorkoutsCollection=_fs.collection('myworkouts');
+      final documentRef=myWorkoutsCollection.doc(workoutId);
+      final documentSnapshot=await documentRef.get();
+      if(!documentSnapshot.exists) throw Exception('no data');
+      final mapData=documentSnapshot.data()!;
+      return MyWorkout(
+        id:mapData['id'],
+        uid:mapData['uid'],
+        name:mapData['name'],
+        imageURL:mapData['imageURL'],
+        minutes:mapData['minutes'],
+        workoutDays: mapData['workoutDays'],
+        createdAt:mapData['createdAt'],
+      );
     }catch(e){
       throw Exception('db error:$e');
     }
