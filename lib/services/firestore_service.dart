@@ -22,19 +22,31 @@ class FirestoreService {
       final documentSnapshot=await documentRef.get();
       if(!documentSnapshot.exists) throw Exception('no data');
       final mapData=documentSnapshot.data()!;
-      return MyWorkout(
-        id:mapData['id'],
-        uid:mapData['uid'],
-        name:mapData['name'],
-        imageURL:mapData['imageURL'],
-        minutes:mapData['minutes'],
-        workoutDays: mapData['workoutDays'],
-        createdAt:mapData['createdAt'],
-      );
+      return MyWorkout.fromMap(mapData);
     }catch(e){
       throw Exception('db error:$e');
     }
     return null;
+  }
+  Future<List<MyWorkout>> fetchAllMyWorkouts(String uid) async{
+    try{
+      final myWorkoutsCollection=_fs.collection('myworkouts');
+      final query=myWorkoutsCollection
+          .where('uid', isEqualTo: uid)
+          .orderBy('createdAt')
+          .orderBy('id');
+      final querySnapshot=await query.get();
+      final qdSnapshotList=querySnapshot.docs;
+      List<MyWorkout> returnData=[];
+      for(final doc in qdSnapshotList){
+        final mapData=doc.data();
+        returnData.add(MyWorkout.fromMap(mapData));
+      }
+      return returnData;
+    }catch(e){
+      throw Exception('db error:$e');
+    }
+
   }
 
   Future<void> updateMyWorkout(MyWorkout myWorkout) async{

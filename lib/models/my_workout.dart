@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class MyWorkout {
   String? id;
   String name;
@@ -24,7 +26,18 @@ class MyWorkout {
     }
     return List<bool>.of(days, growable:false);
   }
+  factory MyWorkout.fromMap(Map<String, dynamic> mapData){
 
+    return MyWorkout(
+      id:mapData['id'],
+      uid:mapData['uid'],
+      name:mapData['name'],
+      imageURL:mapData['imageURL'],
+      minutes:mapData['minutes'],
+      workoutDays: mapData['workoutDays'],
+      createdAt:(mapData['createdAt'] as Timestamp).toDate() ,
+    );
+  }
   Map<String,dynamic> toMap(){
     return {
       'id':id,
