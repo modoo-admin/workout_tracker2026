@@ -10,19 +10,32 @@ class MyWorkoutProvider extends ChangeNotifier {
   final _firestoreService = FirestoreService();
   final _auth = FirebaseAuthService();
   final List<MyWorkout> _workouts = [];
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   List<MyWorkout> get workouts {
     return UnmodifiableListView(_workouts);
   }
 
   Future<void> fetchAllMyWorkouts() async {
-    if (_auth.user == null) return;
-    final fetchedMyWorkouts = await _firestoreService.fetchAllMyWorkouts(
-      uid: _auth.user!.uid,
-      limit: 5,
-      lastWorkout: _workouts.lastOrNull,
-    );
-    _workouts.addAll(fetchedMyWorkouts);
+    if (_auth.user == null || _isLoading) return;
+    
+    _isLoading = true;
     notifyListeners();
+
+    try {
+      final fetchedMyWorkouts = await _firestoreService.fetchAllMyWorkouts(
+        uid: _auth.user!.uid,
+        limit: 5,
+        lastWorkout: _workouts.lastOrNull,
+      );
+      _workouts.addAll(fetchedMyWorkouts);
+    } catch (e) {
+      debugPrint('Error fetching workouts: $e');
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> addMyWorkout(MyWorkout myWorkout) async {

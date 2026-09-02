@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workout_tracker_2026/pages/landing_page.dart';
 import 'package:workout_tracker_2026/pages/settings_page.dart';
+import 'package:workout_tracker_2026/pages/workout_article_list_page.dart';
 import 'package:workout_tracker_2026/pages/workout_guide_page.dart';
 import 'package:workout_tracker_2026/pages/workout_home_page.dart';
 import 'package:workout_tracker_2026/pages/workout_list_page.dart';
@@ -16,6 +17,7 @@ import 'pages/registration_page.dart';
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final GlobalKey<NavigatorState> _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final GlobalKey<NavigatorState> _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
+final GlobalKey<NavigatorState> _articleNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'article');
 
 // GoRouter configuration
 final router = GoRouter(
@@ -79,6 +81,15 @@ final router = GoRouter(
                   ],
                 ),
               ],
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _articleNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/article',
+              builder: (context, state) => const WorkoutArticleListPage(),
             ),
           ],
         ),

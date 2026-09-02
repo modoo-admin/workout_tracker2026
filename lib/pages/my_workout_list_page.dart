@@ -58,7 +58,9 @@ class _MyWorkoutListPageState extends State<MyWorkoutListPage> {
           }
           return ListView.builder(
             controller: _scrollController,
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
             itemCount: workouts.length + 1,
             itemBuilder: (context, index) {
               if (index == 0) {
